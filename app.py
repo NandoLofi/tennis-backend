@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://fgalvan:password@localhost/tennis_users'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://fgalvan:!31Jerusalem@localhost/tennis_users'
 db = SQLAlchemy(app)
 
 class Review(db.Model):
@@ -75,8 +75,10 @@ def delete_review(id):
     db.session.commit()
     return 'Review Deleted'
 
-
-
+@app.route('/search', methods = ['GET'])
+def search_index():
+    req = request.get('https://test.api.amadeus.com/shopping/hotel-offers')
+ 
 
 if __name__ == '__main__':
     app.run()
