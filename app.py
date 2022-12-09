@@ -2,6 +2,7 @@ from crypt import methods
 from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+import json
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://fgalvan:!31Jerusalem@localhost/tennis_users'
@@ -77,7 +78,8 @@ def delete_review(id):
 
 @app.route('/search', methods = ['GET'])
 def search_index():
-    req = request.get('https://test.api.amadeus.com/shopping/hotel-offers')
+    req = request.get('https://hotels4.p.rapidapi.com/v2/get-meta-data')
+    print(req.content)
  
 
 if __name__ == '__main__':
