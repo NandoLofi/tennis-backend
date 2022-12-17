@@ -2,6 +2,7 @@ from crypt import methods
 from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+import requests
 import json
 
 app = Flask(__name__)
@@ -78,8 +79,14 @@ def delete_review(id):
 
 @app.route('/search', methods = ['GET'])
 def search_index():
-    req = request.get('https://hotels4.p.rapidapi.com/v2/get-meta-data')
-    print(req.content)
+    URL = "https://hotels4.p.rapidapi.com/v2/get-meta-data"
+    headers = {
+	"X-RapidAPI-Key": "6c087f1dafmshee4c79cbea1744cp1e4819jsncbb07ebc3b6e",
+	"X-RapidAPI-Host": "hotels4.p.rapidapi.com"
+}
+
+    response = requests.get(URL, headers=headers)
+    return response.json()
  
 
 if __name__ == '__main__':
